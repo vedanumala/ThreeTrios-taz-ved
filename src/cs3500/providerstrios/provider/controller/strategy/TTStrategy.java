@@ -1,7 +1,7 @@
-package cs3500.providersThreetrios.provider.strategy;
+package cs3500.providerstrios.provider.controller.strategy;
 
-import cs3500.providersThreetrios.provider.model.Move;
-import cs3500.providersThreetrios.provider.model.TTModel;
+import cs3500.providerstrios.provider.controller.model.Move;
+import cs3500.providerstrios.provider.controller.model.TTModel;
 
 /**
  * A strategy interface that chooses a move for a player based on a certain technique.

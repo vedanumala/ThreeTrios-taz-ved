@@ -3,8 +3,8 @@ package cs3500.adapter;
 import cs3500.controller.Features;
 import cs3500.model.PlayerColor;
 import cs3500.model.ReadOnlyThreeTriosModel;
-import cs3500.providersThreetrios.provider.controller.TTController;
-import cs3500.providersThreetrios.provider.view.TTGUIView;
+import cs3500.providerstrios.provider.controller.controller.TTController;
+import cs3500.providerstrios.provider.controller.view.TTGUIView;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 

@@ -6,8 +6,8 @@ import cs3500.model.Coordinate;
 import cs3500.model.GameCoordinate;
 import cs3500.model.PlayerColor;
 import cs3500.model.ReadOnlyThreeTriosModel;
-import cs3500.providersThreetrios.provider.controller.TTController;
-import cs3500.providersThreetrios.provider.model.Move;
+import cs3500.providerstrios.provider.controller.controller.TTController;
+import cs3500.providerstrios.provider.controller.model.Move;
 import java.util.List;
 
 /**

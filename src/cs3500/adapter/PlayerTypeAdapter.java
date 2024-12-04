@@ -1,7 +1,7 @@
 package cs3500.adapter;
 
 import cs3500.model.PlayerColor;
-import cs3500.providersThreetrios.provider.model.Player;
+import cs3500.providerstrios.provider.controller.model.Player;
 
 /**
  * Utility class for converting between our PlayerColor and the provider's Player types.

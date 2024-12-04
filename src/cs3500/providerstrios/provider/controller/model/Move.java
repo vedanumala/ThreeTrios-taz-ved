@@ -1,4 +1,4 @@
-package cs3500.providersThreetrios.provider.model;
+package cs3500.providerstrios.provider.controller.model;
 
 /**
  * A move that can be played in a {@link TTModel} game, with coordinates on the grid and

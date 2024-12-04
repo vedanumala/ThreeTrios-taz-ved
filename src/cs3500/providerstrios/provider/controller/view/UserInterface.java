@@ -1,4 +1,4 @@
-package cs3500.providersThreetrios.provider.view;
+package cs3500.providerstrios.provider.controller.view;
 
 /**
  * User interface for a Three Trios game.

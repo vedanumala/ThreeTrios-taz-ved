@@ -1,8 +1,8 @@
-package cs3500.providersThreetrios.provider.view;
+package cs3500.providerstrios.provider.controller.view;
 
-import cs3500.providersThreetrios.provider.controller.TTController;
-import cs3500.providersThreetrios.provider.model.Player;
-import cs3500.providersThreetrios.provider.model.ReadOnlyTTModel;
+import cs3500.providerstrios.provider.controller.controller.TTController;
+import cs3500.providerstrios.provider.controller.model.Player;
+import cs3500.providerstrios.provider.controller.model.ReadOnlyTTModel;
 import javax.swing.JFrame;
 
 /**

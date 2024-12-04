@@ -1,4 +1,4 @@
-package cs3500.providersThreetrios.provider.model;
+package cs3500.providerstrios.provider.controller.model;
 
 /**
  * Represents a Player in Three Trios by its color.

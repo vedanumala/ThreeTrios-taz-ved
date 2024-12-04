@@ -1,6 +1,6 @@
-package cs3500.providersThreetrios.provider.controller;
+package cs3500.providerstrios.provider.controller.controller;
 
-import cs3500.providersThreetrios.provider.model.Move;
+import cs3500.providerstrios.provider.controller.model.Move;
 
 /**
  * Represents the controller for a Three Trios game.

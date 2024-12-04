@@ -1,4 +1,4 @@
-package cs3500.providersThreetrios.provider.view;
+package cs3500.providerstrios.provider.controller.view;
 
 /**
  * Represents the view for the ThreeTriosModel game.

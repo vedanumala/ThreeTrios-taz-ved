@@ -1,4 +1,4 @@
-package cs3500.providersThreetrios.provider.model;
+package cs3500.providerstrios.provider.controller.model;
 
 /**
  * The interface for a card used in a Three Trios game.
