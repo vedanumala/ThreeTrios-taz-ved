@@ -1,10 +1,15 @@
 package cs3500.threetrios;
 
+import cs3500.adapter.ControllerAdapter;
+import cs3500.adapter.ModelAdapter;
+import cs3500.adapter.ProviderViewAdapter;
 import cs3500.controller.GameController;
 import cs3500.model.AIThreeTriosGame;
 import cs3500.model.BasicThreeTriosGame;
 import cs3500.model.PlayerColor;
 import cs3500.model.ThreeTriosModel;
+import cs3500.providersThreetrios.provider.model.Player;
+import cs3500.providersThreetrios.provider.view.ThreeTriosGUIView;
 import cs3500.strategy.CornerStrategy;
 import cs3500.strategy.MaxFlipsStrategy;
 import cs3500.strategy.Strategy;
@@ -87,10 +92,10 @@ public class ThreeTrios {
     }
 
     try {
-      // Initialize the registry
+      // Initialize registry
       GameControllerRegistry.initialize();
 
-      // Create appropriate model based on player types
+      // Create and initialize model
       ThreeTriosModel model;
       if (player1Type.equals("human") && player2Type.equals("human")) {
         model = new BasicThreeTriosGame();
@@ -109,20 +114,42 @@ public class ThreeTrios {
         System.exit(1);
       }
 
-      // Create view
-      ThreeTriosView view = new SwingThreeTriosView(model);
+      // Create model adapter for provider's interface
+      ModelAdapter modelAdapter = new ModelAdapter(model);
 
-      // Create strategies for both players
+      // Create strategies
       Strategy redStrategy = createStrategy(player1Type);
       Strategy blueStrategy = createStrategy(player2Type);
 
-      // Create and register controllers
-      GameController redController = new GameController(
-              model, view, PlayerColor.RED, redStrategy);
-      GameController blueController = new GameController(
-              model, view, PlayerColor.BLUE, blueStrategy);
+      // Create Player 1's view (original implementation)
+      ThreeTriosView player1View = new SwingThreeTriosView(model);
 
-      // Register controllers with registry
+      // Create Player 1's controller
+      GameController redController = new GameController(
+              model, player1View, PlayerColor.RED, redStrategy);
+
+      // Create controller adapter for Player 2's view
+      ControllerAdapter controllerAdapter = new ControllerAdapter(
+              null, model, PlayerColor.BLUE);
+
+      // Create Player 2's provider view with the controller adapter
+      ThreeTriosGUIView providerView = new ThreeTriosGUIView(
+              modelAdapter,
+              Player.BLUE,
+              controllerAdapter);
+
+      // Create adapter for provider's view
+      ProviderViewAdapter player2ViewAdapter = new ProviderViewAdapter(
+              providerView, model, PlayerColor.BLUE);
+
+      // Create Player 2's controller
+      GameController blueController = new GameController(
+              model, player2ViewAdapter, PlayerColor.BLUE, blueStrategy);
+
+      // Update the controller adapter's features
+      controllerAdapter.setFeatures(blueController);
+
+      // Register controllers
       GameControllerRegistry.register(PlayerColor.RED, redController);
       GameControllerRegistry.register(PlayerColor.BLUE, blueController);
 
@@ -130,8 +157,11 @@ public class ThreeTrios {
       redController.start();
       blueController.start();
 
-      // Make the view visible and start the game
-      view.setVisible(true);
+      // Make views visible
+      player1View.setVisible(true);
+      player2ViewAdapter.setVisible(true);
+
+      // Start the game
       model.startGame();
 
       // Print initial game configuration

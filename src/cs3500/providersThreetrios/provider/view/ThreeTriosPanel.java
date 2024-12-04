@@ -1,21 +1,18 @@
 package cs3500.providersThreetrios.provider.view;
 
 import cs3500.providersThreetrios.provider.controller.TTController;
-import cs3500.providersThreetrios.provider.model.TTCard;
-import cs3500.providersThreetrios.provider.model.Move;
 import cs3500.providersThreetrios.provider.model.Cell;
 import cs3500.providersThreetrios.provider.model.Direction;
-import cs3500.providersThreetrios.provider.model.ReadOnlyTTModel;
+import cs3500.providersThreetrios.provider.model.Move;
 import cs3500.providersThreetrios.provider.model.Player;
-import javax.swing.JPanel;
-import javax.swing.Timer;
-import javax.swing.event.MouseInputAdapter;
+import cs3500.providersThreetrios.provider.model.ReadOnlyTTModel;
+import cs3500.providersThreetrios.provider.model.TTCard;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -24,6 +21,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.event.MouseInputAdapter;
 
 /**
  * Implements nearly everything for the Three Trios GUI:
@@ -42,6 +42,7 @@ public class ThreeTriosPanel extends JPanel implements ActionListener {
 
   /**
    * Creates a new ThreeTriosPanel.
+   *
    * @param model the model for the panel to draw from
    */
   public ThreeTriosPanel(ReadOnlyTTModel model, Player player, TTGUIView view) {
@@ -68,9 +69,11 @@ public class ThreeTriosPanel extends JPanel implements ActionListener {
 
   /**
    * Adds the given controller to the panel.
+   *
+   * @throws IllegalArgumentException if the controller is null.
+   * @throws IllegalStateException    if the panel already has a controller.
+   *
    * @param controller  the controller to add to the view
-   * @throws IllegalArgumentException if the controller is null
-   * @throws IllegalStateException    if the panel already has a controller
    */
   public void setController(TTController controller) {
     if (controller == null) {
@@ -237,6 +240,9 @@ public class ThreeTriosPanel extends JPanel implements ActionListener {
     throw new IllegalStateException("invalid hue");
   }
 
+  /**
+   * Starts the turn for the player.
+   */
   public void startTurn() {
     controller.startTurn();
   }

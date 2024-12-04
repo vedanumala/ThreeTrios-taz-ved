@@ -1,0 +1,21 @@
+Getting hand for player: RED
+Checking board state
+Checking flips for Strong at position (0, 0)
+Checking flips for Weak at position (0, 0)
+Checking flips for Strong at position (0, 1)
+Checking flips for Weak at position (0, 1)
+Checking flips for Strong at position (0, 2)
+Checking flips for Weak at position (0, 2)
+Checking flips for Strong at position (1, 0)
+Checking flips for Weak at position (1, 0)
+Checking flips for Strong at position (1, 1)
+Checking flips for Weak at position (1, 1)
+Checking flips for Strong at position (1, 2)
+Checking flips for Weak at position (1, 2)
+Checking flips for Strong at position (2, 0)
+Checking flips for Weak at position (2, 0)
+Checking flips for Strong at position (2, 1)
+Checking flips for Weak at position (2, 1)
+Checking flips for Strong at position (2, 2)
+Checking flips for Weak at position (2, 2)
+Selected move: Strong card at position (0, 0) with 3 potential flips
