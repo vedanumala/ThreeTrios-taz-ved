@@ -408,3 +408,53 @@ test/
 │
 └── ThreeTriosExamples.java
 ```
+
+## Changes Made in HW 8
+
+For this assignment, we had to work with another team's view implementation for our Three Trios game. We had to keep our original view for Player 1 (Red) and use their view for Player 2 (Blue). This required creating adapter classes to make the two different implementations work together.
+
+### What Works and What Doesn't
+
+What Works:
+- Playing the game with a human player (Red) and an AI using maxflips strategy (Blue)
+- Basic game functions like placing cards and battles
+- Turn switching between players
+- Keeping track of scores
+- Game ending correctly
+
+What Doesn't Work:
+- The 5x5 board layout causes errors
+- Two human players trying to play together
+- Using the corner strategy for the AI
+- Some of the provider's view features like animations
+
+### Files We Created
+
+We had to create four new files to make everything work together:
+
+1. ModelAdapter.java - Makes our game model work with their view
+2. ControllerAdapter.java - Helps handle player moves between the two views
+3. ProviderViewAdapter.java - Makes their view work with our game
+4. PlayerTypeAdapter.java - Helps convert between different player types
+
+We also had to update our main ThreeTrios.java file to support using both views at once. This meant changing how we set up the game and how we handle different types of players.
+
+### What We Learned From Their Code
+
+Looking at the provider's code was interesting. Their view had some cool features, but it was hard to make it work with our implementation. The main issue was how they handled the game board and cards - they expected things to work differently than how we designed our game.
+
+The code itself was pretty well written and organized. They included good comments that helped us understand what their code does. However, we ran into some problems when their view expected certain things about the cards and board that our game handles differently.
+
+### Our Experience
+
+Working on this project taught us a lot about making different code work together. The biggest challenge was dealing with null values - their view would crash sometimes because it expected data in a different format than what our game provides.
+
+The provider team was helpful when we had questions. They responded quickly and helped explain how their code works. Even though we couldn't get everything working perfectly, we learned a lot about how to design code that other people might need to use later.
+
+If we could do this project over, we would:
+- Add better error checking in our code
+- Write clearer comments about how our code works
+- Make our interfaces more flexible
+- Add more tests to catch problems early
+
+Right now, the best way to run our game is using a human player for Red (Player 1) and the maxflips AI strategy for Blue (Player 2). Other combinations might cause errors, especially with larger board sizes.

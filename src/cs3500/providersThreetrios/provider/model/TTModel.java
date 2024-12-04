@@ -1,7 +1,6 @@
 package cs3500.providersThreetrios.provider.model;
 
 import cs3500.providersThreetrios.provider.view.TTGUIView;
-
 import java.util.Scanner;
 
 /**

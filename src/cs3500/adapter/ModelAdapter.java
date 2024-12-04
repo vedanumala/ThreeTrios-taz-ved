@@ -43,6 +43,7 @@ public class ModelAdapter implements TTModel {
 
   @Override
   public void startGame(Scanner gridData, Scanner cardData, TTGUIView viewRed, TTGUIView viewBlue) {
+    // No implementation needed - game is initialized elsewhere
   }
 
   @Override
@@ -64,7 +65,7 @@ public class ModelAdapter implements TTModel {
     List<Card> hand = model.getPlayerHand(convertToPlayerColor(player));
     ArrayList<TTCard> convertedHand = new ArrayList<>();
     for (Card card : hand) {
-      if (card != null) {
+      if (card != null && card.getOwner() != null) {
         convertedHand.add(convertToProviderCard(card));
       }
     }
@@ -81,7 +82,13 @@ public class ModelAdapter implements TTModel {
       ArrayList<Cell> row = new ArrayList<>();
       for (int j = 0; j < ourGrid.getTotalColumns(); j++) {
         Coordinate pos = new GameCoordinate(i, j);
-        row.add(createCell(board, pos));
+        Cell cell = createCell(board, pos);
+        // Verify consistency before adding
+        if (!cell.isEmpty() && cell.getCard() == null) {
+          throw new IllegalStateException(
+                  String.format("Inconsistent cell state at %d,%d: not empty but no card", i, j));
+        }
+        row.add(cell);
       }
       grid.add(row);
     }
@@ -114,12 +121,12 @@ public class ModelAdapter implements TTModel {
 
   @Override
   public void battleNeighbors(int row, int col) {
-    // Battle logic is handled internally by our model during playCard
+    // Battle logic handled by our model during playCard
   }
 
   @Override
   public void toggleTurn() {
-    // Turn toggling is handled internally by our model during playCard
+    // Turn toggling handled by our model during playCard
   }
 
   @Override
@@ -141,61 +148,72 @@ public class ModelAdapter implements TTModel {
 
   @Override
   public TTModel copy() {
-    return this;  // Our model doesn't support copying
+    return this;
   }
 
   private Cell createCell(Board board, Coordinate pos) {
     return new Cell() {
       @Override
       public boolean isEmpty() {
-        CellState state = board.getGrid().getCellState(pos);
-        return state == CellState.AVAILABLE;
+        try {
+          CellState state = board.getGrid().getCellState(pos);
+          if (state == CellState.HOLE) {
+            return false; // Holes should not be considered empty
+          }
+          return state == CellState.AVAILABLE;
+        } catch (IllegalStateException e) {
+          return true; // If we can't get state, consider it empty
+        }
       }
 
       @Override
       public boolean placeCard(TTCard card) {
-        return false;  // Handled by model
+        return false; // Handled by model
       }
 
       @Override
       public Optional<Player> getOwner() {
-        CellState state = board.getGrid().getCellState(pos);
-
-        // Return empty optional for holes and available cells
-        if (state == CellState.HOLE || state == CellState.AVAILABLE) {
-          return Optional.empty();
-        }
-
         try {
+          // First check if it's a valid cell that could have an owner
+          CellState state = board.getGrid().getCellState(pos);
+          if (state != CellState.OCCUPIED) {
+            return Optional.empty();
+          }
+
+          // Then get the card and check its owner
           Card card = board.getCardAt(pos);
-          // Only return an owner if we have both a card and its owner
           if (card != null && card.getOwner() != null) {
             return Optional.of(convertToProviderPlayer(card.getOwner().getColor()));
           }
         } catch (IllegalStateException e) {
-          // If any error occurs, return empty optional
+          // Fall through to empty
         }
         return Optional.empty();
       }
 
       @Override
       public boolean battle(Cell other, Direction direction) {
-        return false;  // Handled by model
+        return false; // Handled by model
       }
 
       @Override
       public TTCard getCard() {
-        CellState state = board.getGrid().getCellState(pos);
-        if (state != CellState.OCCUPIED) {
-          return null;
-        }
-
         try {
+          // First verify cell state
+          CellState state = board.getGrid().getCellState(pos);
+          if (state != CellState.OCCUPIED) {
+            return null;
+          }
+
+          // Get the card and ensure it has an owner
           Card card = board.getCardAt(pos);
-          return card != null ? convertToProviderCard(card) : null;
+          if (card != null && card.getOwner() != null) {
+            return convertToProviderCard(card);
+          }
         } catch (IllegalStateException e) {
-          return null;
+          // Fall through to null
         }
+        return null;
       }
 
       @Override
@@ -206,16 +224,13 @@ public class ModelAdapter implements TTModel {
   }
 
   private TTCard convertToProviderCard(Card card) {
-    if (card == null) {
+    if (card == null || card.getOwner() == null) {
       return null;
     }
 
     return new TTCard() {
       @Override
       public Player getOwner() {
-        if (card.getOwner() == null) {
-          throw new IllegalStateException("Card owner cannot be null");
-        }
         return convertToProviderPlayer(card.getOwner().getColor());
       }
 
@@ -226,7 +241,7 @@ public class ModelAdapter implements TTModel {
 
       @Override
       public boolean battle(TTCard other, Direction direction) {
-        return false;  // Handled by model
+        return false; // Handled by model
       }
 
       @Override

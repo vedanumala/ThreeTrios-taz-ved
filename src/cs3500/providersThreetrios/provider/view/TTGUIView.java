@@ -5,8 +5,14 @@ package cs3500.providersThreetrios.provider.view;
  */
 public interface TTGUIView {
 
+  /**
+   * Takes actions needed at the start of the player's turn.
+   */
   void startTurn();
 
+  /**
+   * Updates the title of the GUI window.
+   */
   void updateTitle();
 
   /**
