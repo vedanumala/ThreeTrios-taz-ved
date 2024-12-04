@@ -70,10 +70,9 @@ public class ThreeTriosPanel extends JPanel implements ActionListener {
   /**
    * Adds the given controller to the panel.
    *
+   * @param controller  the controller to add to the view
    * @throws IllegalArgumentException if the controller is null.
    * @throws IllegalStateException    if the panel already has a controller.
-   *
-   * @param controller  the controller to add to the view
    */
   public void setController(TTController controller) {
     if (controller == null) {
