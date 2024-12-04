@@ -1,12 +1,12 @@
-package cs3500.threetrios.provider.model;
+package cs3500.providersThreetrios.provider.model;
 
-import cs3500.threetrios.provider.view.TTGUIView;
+import cs3500.providersThreetrios.provider.view.TTGUIView;
 
 import java.util.Scanner;
 
 /**
  * An interface for the model of a Three Trios Game.
- * A model implements a grid of {@link Cell} that are either {@link CardCell} or {@link Hole}.
+ * A model implements a grid of {@link Cell} that are either CardCell or Hole.
  * There are two competing {@link Player}s who each have a hand and will try to win over the board.
  */
 public interface TTModel extends ReadOnlyTTModel {

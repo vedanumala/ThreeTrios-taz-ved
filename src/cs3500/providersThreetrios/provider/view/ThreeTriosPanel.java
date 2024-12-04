@@ -1,13 +1,12 @@
-package cs3500.threetrios.provider.view;
+package cs3500.providersThreetrios.provider.view;
 
-import cs3500.threetrios.provider.controller.TTController;
-import cs3500.threetrios.provider.model.TTCard;
-import cs3500.threetrios.provider.model.Move;
-import cs3500.threetrios.provider.model.Cell;
-import cs3500.threetrios.provider.model.Direction;
-import cs3500.threetrios.provider.model.ReadOnlyTTModel;
-import cs3500.threetrios.provider.model.Player;
-
+import cs3500.providersThreetrios.provider.controller.TTController;
+import cs3500.providersThreetrios.provider.model.TTCard;
+import cs3500.providersThreetrios.provider.model.Move;
+import cs3500.providersThreetrios.provider.model.Cell;
+import cs3500.providersThreetrios.provider.model.Direction;
+import cs3500.providersThreetrios.provider.model.ReadOnlyTTModel;
+import cs3500.providersThreetrios.provider.model.Player;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;

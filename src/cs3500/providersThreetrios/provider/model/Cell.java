@@ -1,9 +1,9 @@
-package cs3500.threetrios.provider.model;
+package cs3500.providersThreetrios.provider.model;
 
 import java.util.Optional;
 
 /**
- * Cell in a {@link ThreeTriosModel}'s grid.
+ * Cell in a ThreeTriosModel's grid.
  */
 public interface Cell {
 
@@ -14,7 +14,7 @@ public interface Cell {
   boolean isEmpty();
 
   /**
-   * Places the card in the {@link Cell}. Returns false if the Cell is a {@link Hole}.
+   * Places the card in the {@link Cell}. Returns false if the Cell is a Hole.
    * @param card  the {@link TTCard} to place in the {@link Cell}
    * @return  whether the place action was successful
    * @throws IllegalArgumentException if the given card is null

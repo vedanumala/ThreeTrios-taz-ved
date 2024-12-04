@@ -1,4 +1,4 @@
-package cs3500.threetrios.provider.view;
+package cs3500.providersThreetrios.provider.view;
 
 /**
  * Interface for a Three Trios view. Can only be shown/hidden and repainted.

@@ -1,4 +1,4 @@
-package cs3500.threetrios.provider.model;
+package cs3500.providersThreetrios.provider.model;
 
 import java.util.ArrayList;
 import java.util.Optional;
