@@ -409,7 +409,7 @@ test/
 └── ThreeTriosExamples.java
 ```
 
-## Changes Made in HW 8
+## Changes Made in Part 4
 
 For this assignment, we had to work with another team's view implementation for our Three Trios game. We had to keep our original view for Player 1 (Red) and use their view for Player 2 (Blue). This required creating adapter classes to make the two different implementations work together.
 
